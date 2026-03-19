@@ -1,22 +1,65 @@
-const http = require('http');
+const http = require("http");
 
-const server = http.createServer(function (req, res) {
+const PORT = 3000;
 
-    console.log(req.url, req.method, req.headers);
-    res.setHeader('Content-Type', 'text/html');
+const server = http.createServer((req, res) => {
+    const { method, url } = req;
 
-    const name = 'Bhargavi';
-    const date = new Date().toLocaleDateString();
+    if (method === "GET" && url === "/") {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        return res.end(`
+      <html>
+        <body>
+          <h1>Home Page</h1>
+          <a href="/about">Go to About</a>
+        </body>
+      </html>
+    `);
+    }
 
-    res.write('<html>');
-    res.write('<body>');
-    res.write('<h1>Hello my name is ' + name + ' and the date is ' + date + '</h1>');
-    res.write('</body>');
-    res.write('</html>');
-    res.end();
-    
+    else if (method === "GET" && url === "/about") {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        return res.end(`
+      <html>
+        <body>
+          <h1>About Page</h1>
+          <p>Name: Bhargavi Thorat</p>
+          <a href="/">Back to Home</a>
+        </body>
+      </html>
+    `);
+    }
+
+    else if (method === "GET" && url === "/redirect") {
+        res.writeHead(302, { Location: "/" });
+        return res.end();
+    }
+
+    else if (method === "POST" && url === "/") {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        return res.end(`
+      <html>
+        <body>
+          <h1>POST Request Received on Home</h1>
+          <a href="/">Go Back</a>
+        </body>
+      </html>
+    `);
+    }
+
+    else {
+        res.writeHead(404, { "Content-Type": "text/html" });
+        return res.end(`
+      <html>
+        <body>
+          <h1>404 Page Not Found</h1>
+          <a href="/">Go Home</a>
+        </body>
+      </html>
+    `);
+    }
 });
 
-server.listen(3000, () => {
-    console.log('Server running at http://localhost:3000');
+server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });

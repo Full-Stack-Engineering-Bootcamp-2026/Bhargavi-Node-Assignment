@@ -1,0 +1,16 @@
+{
+  "name": "day5",
+  "version": "1.0.0",
+  "description": "learning node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node App.js",
+    "start-server": "node App.js"
+  },
+  "author": "Bhargavi",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

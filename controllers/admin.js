@@ -15,10 +15,12 @@ exports.postAddProduct = (req, res, next) => {
   const description = req.body.description;
   const product = new Product({
     title: title,
+  // keys that we define in model : data that you receive in url 
     price: price,
     description: description,
     imageUrl: imageUrl,
-    userId: req.user
+    // userId: req.user._id
+    userId : req.user //mongoose will automatically fetch userId
   });
   product
     .save()
@@ -54,6 +56,8 @@ exports.getEditProduct = (req, res, next) => {
 };
 
 exports.postEditProduct = (req, res, next) => {
+
+  //extract all the data that we need 
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
@@ -77,8 +81,8 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.find()
-    // .select('title price -_id')
-    // .populate('userId', 'name')
+    .select('title price -_id') //we can select what data should be shown and can minus id 
+    .populate('userId', 'name')
     .then(products => {
       console.log(products);
       res.render('admin/products', {

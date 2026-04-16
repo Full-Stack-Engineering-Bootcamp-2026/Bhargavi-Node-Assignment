@@ -12,11 +12,16 @@ const userSchema = new Schema({
         required:true
     },
     cart:{
-        items:[{
-            productId:{ type: Schema.Types.ObjectId ,ref:'Product', required:true},//ObjectId is unique id that mongoose gives to each object
+        items:[
+          {
+            productId:{ 
+              type: Schema.Types.ObjectId ,
+              ref:'Product', 
+              required:true},//ObjectId is unique id that mongoose gives to each object
             quantity:{type:Number, required:true}
-        }]
-    }//array of document
+          }
+        ]
+      }//array of document
 })
 
 userSchema.methods.addToCart = function(product) {

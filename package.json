@@ -1,31 +1,45 @@
 {
   "name": "day9",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "start-server": "node app.js"
+    "start-server": "node app.js",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.6",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "connect-mongodb-session": "^5.0.0",
-    "dotenv": "^17.4.1",
+    "dotenv": "^17.4.2",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mongodb": "^7.1.1",
     "mongoose": "^9.4.1",
     "mysql2": "^3.20.0",
-    "nodemon": "^3.1.14",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
-  }
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Full-Stack-Engineering-Bootcamp-2026/Bhargavi-Node-Assignment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Full-Stack-Engineering-Bootcamp-2026/Bhargavi-Node-Assignment/issues"
+  },
+  "homepage": "https://github.com/Full-Stack-Engineering-Bootcamp-2026/Bhargavi-Node-Assignment#readme",
+  "description": ""
 }

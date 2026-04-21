@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Email</title>
+</head>
+<body>
+
+  <h2>Send Email</h2>
+
+  <% if (errors) { %>
+    <ul style="color:red;">
+      <% errors.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <form action="/send-mail" method="POST">
+    <input type="email" name="email" placeholder="Enter email" required />
+    <br><br>
+
+    <input type="text" name="subject" placeholder="Enter subject" required />
+    <br><br>
+
+    <textarea name="message" placeholder="Enter message"></textarea>
+    <br><br>
+
+    <button type="submit">Send</button>
+  </form>
+
+</body>
+</html>

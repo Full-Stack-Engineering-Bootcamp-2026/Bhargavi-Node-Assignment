@@ -2,26 +2,30 @@ import fs from "fs";
 import path from "path";
 import sgMail, { MailDataRequired } from "@sendgrid/mail";
 
-//ead API key safely
+// API Key
 const apiKey = process.env.SENDGRID_API_KEY;
 
 if (!apiKey) {
   throw new Error("SENDGRID_API_KEY is missing in .env");
 }
 
-// Trim removes spaces/newlines
 sgMail.setApiKey(apiKey.trim());
 
-const sendEmail = async (): Promise<void> => {
+export const sendEmail = async (
+  email:string,
+  subject:string,
+  message:string
+):Promise<void> => {
   const filePath = path.join(__dirname, "../../text.txt");
   const fileContent = fs.readFileSync(filePath).toString("base64");
 
   const msg: MailDataRequired = {
-    to: "emailtobhargavi.9@gmail.com",
-    from: "bhargavithorat9@gmail.com",
-    subject: "Weekly Update",
-    text: "Hello from SendGrid",
-    html: "<h1>Hello this is weekly mail</h1>",
+    to: email,
+    from:"bhargavithorat9@gmail.com",
+    subject:subject,
+    text:message,
+    html:`<h1>${message}</h1>`,
+
     attachments: [
       {
         content: fileContent,
@@ -32,13 +36,5 @@ const sendEmail = async (): Promise<void> => {
     ],
   };
 
-  try {
-    await sgMail.send(msg);
-    console.log("Email sent successfully");
-  } catch (error) {
-    console.error("SendGrid Error:", error);
-    throw error;
-  }
+  await sgMail.send(msg);
 };
-
-export default sendEmail;

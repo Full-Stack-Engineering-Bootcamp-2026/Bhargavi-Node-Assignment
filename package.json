@@ -7,7 +7,7 @@
     "start-server": "node app.js",
     "build": "tsc",
     "start": "node dist/app.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,12 +23,14 @@
     "express-session": "^1.19.0",
     "express-validator": "^7.3.2",
     "mongodb": "^7.1.1",
-    "mongoose": "^9.4.1",
+    "mongoose": "^9.5.0",
+    "multer": "^2.1.1",
     "mysql2": "^3.20.0",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
     "@types/node": "^25.6.0",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",

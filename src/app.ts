@@ -7,6 +7,7 @@ import { connectDB } from "./config/db";
 import fileRoutes from "./routes/file.routes";
 import userRoutes from "./routes/user.routes";
 import { errorHandler } from "./middleware/errorHandler";
+import razorpayRouter from './routes/payment.routes'
 
 const app = express();
 const PORT = 3000;
@@ -14,6 +15,9 @@ const PORT = 3000;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//payment
+app.use('/payment',razorpayRouter)
 
 // Static files
 app.use("/uploads", express.static("uploads"));

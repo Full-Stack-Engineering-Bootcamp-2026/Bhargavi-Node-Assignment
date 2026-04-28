@@ -9,12 +9,21 @@ import userRoutes from "./routes/user.routes";
 import { errorHandler } from "./middleware/errorHandler";
 import razorpayRouter from './routes/payment.routes'
 
+import postRoute from "./routes/Post.routes";
+import { corsMiddleware } from "./middleware/cors.middleware";
+
 const app = express();
+//post 3000 
 const PORT = 3000;
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//cors middleware
+app.use(corsMiddleware);
+//route - cors
+app.use("/v1",postRoute)
 
 //payment
 app.use('/payment',razorpayRouter)
